@@ -1,2 +1,2 @@
-# Write-Emails-Note-via-voice
-Write Emails/Note via voice
+# Write-Emails-Notes-via-voice
+Write Emails/Notes via voice
