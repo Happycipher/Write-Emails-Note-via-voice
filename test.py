@@ -24,7 +24,7 @@ def takeCommand():
 
     with sr.Microphone() as source:
         print("Listening....")
-        r.pause_threshold = 0.8
+        r.pause_threshold = 0.7
         audio = r.listen(source)
 
     try:
@@ -67,11 +67,12 @@ def write_notepad():
     #print(pg.position())
     pyautogui.typewrite('notepad')
     pyautogui.press('enter')
-    print("sir do you want to type in note pad ")
-    speak("sir do you want to type in note pad ")
+
     exit_msg = "sir do you want to save or exit"
     while True:
         clear()
+        print("sir do you want to type in note pad ")
+        speak("sir do you want to type in note pad ")
         query = voiceboard().lower()
         if 'yes' in query:
             pass
@@ -91,7 +92,7 @@ def write_notepad():
                 pyautogui.press('enter')
                 exit()
 
-            else:
+            elif "no" in query or "change" in query or "rewrite" in query:
                 break
 
 def send_email():
@@ -104,7 +105,7 @@ def send_email():
         # print(email_address)
         # print(password)
         f="do you want to send your mail"
-        j = "Would you like to type your mail "
+        j = "Would you like to type your mail or speak"
         while True:
             clear()
             with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
@@ -136,6 +137,10 @@ def send_email():
 
                 while True:
                     clear()
+                    print("Sir this is the subject and body of your mail")
+                    speak("Sir this is the subject and body of your mail")
+                    print(subject)
+                    print(body)
                     print(f)
                     speak(f)
                     query = takeCommand().lower()
@@ -146,14 +151,21 @@ def send_email():
                         print(t)
                         speak(t)
                         exit()
-                    elif "rewrite" in  query or "changes" in query or "correct" in query:
+                    elif "rewrite" in  query or "no" in query or "correct" in query:
+                        print("you can now rewrite the email")
+                        speak("you can now rewrite the email")
                         break
+
+                    elif "exit" in query:
+                        exit()
 while True:
     clear()
+    print("sir do you wan't to open notepad or email")
+    speak("sir do you wan't to open notepad or email")
     query = takeCommand().lower()
-    if query =="notepad":
+    if query =="notepad" or query == "open notepad":
         write_notepad()
-    if query =="email":
+    if query =="email" or query=="send email" or query=="send an email" or query=="i want to send an email":
         send_email()
     elif query =="exit":
         exit()
